@@ -1,13 +1,13 @@
 (defproject org.arachne-framework/factui "1.1.0-SNAPSHOT"
-  :dependencies [[org.clojure/clojure "1.9.0-alpha17" :scope "provided"]
-                 [org.clojure/clojurescript "1.9.671" :scope "provided"]
-                 [org.clojure/core.async "0.3.443"]
-                 [com.cerner/clara-rules "0.15.1" :exclusions [prismatic/schema]]
-                 [prismatic/schema "1.1.6"]
+  :dependencies [[org.clojure/clojure "1.9.0-RC2" :scope "provided"]
+                 [org.clojure/clojurescript "1.9.946" :scope "provided"]
+                 [org.clojure/core.async "0.3.465"]
+                 [com.cerner/clara-rules "0.16.1" :exclusions [prismatic/schema]]
+                 [prismatic/schema "1.1.7"]
                  [org.clojure/core.match "0.3.0-alpha4"]]
   :source-paths ["dev" "src"]
-  :profiles {:test {:plugins [[lein-shell "0.4.0" :exclusions [org.clojure/clojure]]
-                              [lein-cljsbuild "1.1.6" :exclusions [org.clojure/clojure]]]
+  :profiles {:test {:plugins [[lein-shell "0.5.0" :exclusions [org.clojure/clojure]]
+                              [lein-cljsbuild "1.1.7" :exclusions [org.clojure/clojure]]]
                     :cljsbuild {:builds [{:id "dev-figwheel"
                                           :source-paths ["src" "dev"]
                                           :figwheel {:on-jsload "factui.rum/refresh"}
@@ -58,10 +58,11 @@
                                           ["test-cljs"]]
                               "bench" ["do" ["clean"]
                                        ["cljsbuild" "once" "test-bench"]
-                                       ["shell" "phantomjs" "target/test-bench.js"]]
-                              }}
-             :dev {:plugins [[lein-figwheel "0.5.12" :exclusions [org.clojure/clojurescript]]]
-                   :dependencies [[figwheel-sidecar "0.5.12"]
+                                       ["shell" "phantomjs" "target/test-bench.js"]]}}
+
+             :dev {:plugins [[lein-figwheel "0.5.14" :exclusions [org.clojure/clojurescript]]
+                             [lein-ancient "0.6.14"]]
+                   :dependencies [[figwheel-sidecar "0.5.14"]
                                   [rum "0.10.8"]]
                    :source-paths ["dev" "test"]
                    :resource-paths ["target"]
